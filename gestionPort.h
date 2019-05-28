@@ -7,10 +7,12 @@
 
 
 #define CAPACITE 40
+#define NB_TYPES 3
 
 typedef enum  {
    MOTEUR, RAME, VOILE
 } Types;
+
 
 
 
@@ -53,7 +55,7 @@ bool placerBateau(Bateaux b, unsigned place);
 
 void libererPlace(const char** noPlaque);
 
-void afficherDetails(const char** noPlaque);
+void afficherDetails(const char* noPlaque);
 
 void afficherPlace(unsigned place);
 
