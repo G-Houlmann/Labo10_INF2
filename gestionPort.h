@@ -1,29 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   gestionPort.h
- * Author: gilda
- *
- * Created on 28. mai 2019, 16:45
- */
-
 #ifndef GESTIONPORT_H
 #define GESTIONPORT_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#define CAPACITE 40
 
+enum Types {
+   MOTEUR, RAME, VOILE
+};
 
+typedef struct {
+   char* type;
+} Bateaux;
 
+union {
+   char* noPlaque;
+   float longueur;
+} Details;
 
-#ifdef __cplusplus
-}
-#endif
+typedef struct {
+   unsigned nbMoteurs;
+   float puissanceTotale;
+} Moteur;
+
+typedef struct {
+   unsigned nbRames;
+} Rame;
+
+typedef struct {
+   float surfaceVoiles;
+} Voile;
 
 #endif /* GESTIONPORT_H */
-
