@@ -13,12 +13,15 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "gestionPort.h"
 /*
  * 
  */
 int main(int argc, char** argv) {
 
+   Bateaux b = {MOTEUR, {"12", 34}, .specType.moteur = {.nbMoteurs = 3 , .puissanceTotale = 4}};
+   placerBateau(b, 31);
+   
    return (EXIT_SUCCESS);
 }
 

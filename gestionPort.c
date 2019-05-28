@@ -6,14 +6,14 @@ Bateaux saisirBateau(){
 }
 
 bool placerBateau(Bateaux b, unsigned place){
+   port[place] = b;
+}
+
+void libererPlace(const char** noPlaque){
    
 }
 
-void libererPlace(const string* noPlaque){
-   
-}
-
-void afficherDetails(const string* noPlaque){
+void afficherDetails(const char** noPlaque){
    
 }
 

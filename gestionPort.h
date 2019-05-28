@@ -1,19 +1,20 @@
 #ifndef GESTIONPORT_H
 #define GESTIONPORT_H
 
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 
 #define CAPACITE 40
 
-enum Types {
+typedef enum  {
    MOTEUR, RAME, VOILE
-};
+} Types;
+
+
 
 typedef struct {
-   char* type;
-} Bateaux;
-
-union {
    char* noPlaque;
    float longueur;
 } Details;
@@ -30,6 +31,18 @@ typedef struct {
 typedef struct {
    float surfaceVoiles;
 } Voile;
+
+typedef union {
+   Moteur moteur;
+   Rame rame;
+   Voile voile;
+} SpecType;
+
+typedef struct {
+   Types type;
+   Details details;
+   SpecType specType;
+} Bateaux;
 
 
 Bateaux port[CAPACITE];
