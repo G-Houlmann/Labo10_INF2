@@ -47,11 +47,11 @@ typedef struct {
 } Bateaux;
 
 
-Bateaux port[CAPACITE];
+Bateaux* port[CAPACITE];
 
-Bateaux saisirBateau();
+Bateaux* saisirBateau();
 
-bool placerBateau(Bateaux b, unsigned place);
+bool placerBateau(Bateaux* b);
 
 void libererPlace(const char** noPlaque);
 
