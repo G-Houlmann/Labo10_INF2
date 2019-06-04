@@ -1,25 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
  * File:   main.c
- * Author: gilda
- *
- * Created on 28. mai 2019, 16:44
+ * Author: Gildas Houlmann & Delphine Scherler
+ * Date : 06.06.2019
+ * Summary : Laboratoire 10, le but étant d'organiser la gestion d'un port occupé par
+ * des bateaux de différents types.
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "gestionPort.h"
-/*
- * 
- */
-int main(int argc, char** argv) {
 
-   Bateaux b = {MOTEUR, {"12", 34}, .specType.moteur = {.nbMoteurs = 3 , .puissanceTotale = 4}};
+int main(void) {
+   Bateaux b = {MOTEUR,{"12", 34}, .specType.moteur =
+      {.nbMoteurs = 3, .puissanceTotale = 4}};
    placerBateau(&b);
    //afficherDetails("12");
    Bateaux* c = saisirBateau();
@@ -27,4 +20,3 @@ int main(int argc, char** argv) {
    afficherDetails("34");
    return (EXIT_SUCCESS);
 }
-

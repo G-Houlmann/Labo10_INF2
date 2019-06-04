@@ -1,3 +1,9 @@
+/* 
+ * File:   gestionPort.h
+ * Author: Gildas Houlmann & Delphine Scherler
+ * Date : 06.06.2019
+ */
+
 #ifndef GESTIONPORT_H
 #define GESTIONPORT_H
 
@@ -5,17 +11,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 #define CAPACITE 40
 #define NB_TYPES 3
 #define TAILLE_PLAQUE_MAX 15
 
-typedef enum  {
+typedef enum {
    MOTEUR, RAME, VOILE
 } Types;
-
-
-
 
 typedef struct {
    char* noPlaque;
@@ -65,4 +67,3 @@ void Parcourt();
 void afficherPort();
 
 #endif /* GESTIONPORT_H */
-
