@@ -22,6 +22,7 @@ void saisirUnsigned(unsigned* ptr) {
    bool success;
    do {
       success = scanf("%d", ptr);
+      viderBuffer();
    } while (!success);
 }
 
@@ -31,19 +32,19 @@ void saisirFloat(float* ptr) {
    bool success;
    do {
       success = scanf("%f", ptr);
+      viderBuffer();
    } while (!success);
 }
 //Fonction permettant de saisir une string (sous forme char*)
 
-void saisirString(char* ptr, unsigned size) {
+void saisirString(char** ptr, unsigned size) {
    bool success;
-   char* str = malloc(size * sizeof (char));
+   *ptr = malloc(size * sizeof (char));
    do {
-      success = scanf("%s", str);
+      success = scanf("%s", *ptr);
+      viderBuffer();
    } while (!success);
-   ptr = str;
 }
-
 //Permet la saisie de tous les détails d’un bateau qui sera retourné par la fonction.
 //Les erreurs de saisie sont gérées.
 
@@ -52,7 +53,7 @@ Bateaux* saisirBateau() {
 
    //TODO vérifier les entrées et vider buffer
    printf("Veuillez entrer un numero de plaque : \n");
-   saisirString((b->details.noPlaque), TAILLE_PLAQUE_MAX);
+   saisirString(&(b->details.noPlaque), TAILLE_PLAQUE_MAX);
    printf("Veuillez entrer une longueur : \n");
    saisirFloat(&(b->details.longueur));
    printf("Bateau a moteur, rame ou voile? [0; 1; 2] : \n");
@@ -145,6 +146,7 @@ void afficherPlace(unsigned place) {
       printf("Type de bateau : %s\n", correspTypes[port[place]->type]);
       printf("longueur       : %f\n", port[place]->details.longueur);
    }
+   printf("\n");
 }
 //Fonction permettant un traitement à chacune des places du port.
 

@@ -11,12 +11,20 @@
 #include "gestionPort.h"
 
 int main(void) {
-   Bateaux b = {MOTEUR,{"12", 34}, .specType.moteur =
+   Bateaux b = {MOTEUR,{"VD123", 34}, .specType.moteur =
       {.nbMoteurs = 3, .puissanceTotale = 4}};
    placerBateau(&b);
+   //afficherDetails("12");   
+   //afficherPlace(0);
+   //libererPlace("12");   
    //afficherDetails("12");
+   //afficherPlace(0);
+   //afficherPort();
+   
    Bateaux* c = saisirBateau();
-   libererPlace("12");
-   afficherDetails("34");
+   placerBateau(c);   
+   
+   afficherPort();
+   
    return (EXIT_SUCCESS);
 }
