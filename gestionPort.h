@@ -8,6 +8,7 @@
 
 #define CAPACITE 40
 #define NB_TYPES 3
+#define TAILLE_PLAQUE_MAX 15
 
 typedef enum  {
    MOTEUR, RAME, VOILE
@@ -53,7 +54,7 @@ Bateaux* saisirBateau();
 
 bool placerBateau(Bateaux* b);
 
-void libererPlace(const char** noPlaque);
+void libererPlace(const char* noPlaque);
 
 void afficherDetails(const char* noPlaque);
 

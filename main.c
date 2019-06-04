@@ -21,9 +21,10 @@ int main(int argc, char** argv) {
 
    Bateaux b = {MOTEUR, {"12", 34}, .specType.moteur = {.nbMoteurs = 3 , .puissanceTotale = 4}};
    placerBateau(&b);
-   afficherDetails("12");
+   //afficherDetails("12");
    Bateaux* c = saisirBateau();
-   afficherDetails("VD8");
+   libererPlace("12");
+   afficherDetails("34");
    return (EXIT_SUCCESS);
 }
 
