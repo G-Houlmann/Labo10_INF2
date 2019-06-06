@@ -14,17 +14,29 @@ int main(void) {
    Bateaux b = {MOTEUR,{"VD123", 34}, .specType.moteur =
       {.nbMoteurs = 3, .puissanceTotale = 4}};
    placerBateau(&b);
-   //afficherDetails("12");   
-   //afficherPlace(0);
-   //libererPlace("12");   
-   //afficherDetails("12");
-   //afficherPlace(0);
+   
+
+   Bateaux c = {MOTEUR,{"VD124", 34}, .specType.moteur =
+      {.nbMoteurs = 3, .puissanceTotale = 4}};
+   placerBateau(&c);
+
+   
+   libererPlace("VD123");
+   
+   Bateaux d = {MOTEUR,{"VD125", 34}, .specType.moteur =
+      {.nbMoteurs = 3, .puissanceTotale = 4}};
+   placerBateau(&d);
+   
+   
+   
+   Bateaux* e = saisirBateau();
+   placerBateau(e);   
+   afficherDetails("VD456");
    //afficherPort();
-   
-   Bateaux* c = saisirBateau();
-   placerBateau(c);   
-   
-   afficherPort();
+   //libererPlace("VD123");
+   //afficherPort();
+   //afficherDetails("VD123");
+           
    
    return (EXIT_SUCCESS);
 }

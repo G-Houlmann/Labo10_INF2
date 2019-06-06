@@ -12,8 +12,9 @@
 #include <stdlib.h>
 
 #define CAPACITE 40
-#define NB_TYPES 3
-#define TAILLE_PLAQUE_MAX 15
+#define NB_TYPES 3 //Nombre de types de bateaux
+#define TAILLE_PLAQUE_MAX 5
+#define MSG_ERREUR_SAISIE "Saisie incorrecte. Reessayez.\n"
 
 typedef enum {
    MOTEUR, RAME, VOILE

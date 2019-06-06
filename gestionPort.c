@@ -23,17 +23,26 @@ void saisirUnsigned(unsigned* ptr) {
    do {
       success = scanf("%d", ptr);
       viderBuffer();
-   } while (!success);
+   } while (!success && printf(MSG_ERREUR_SAISIE));
+}
+
+void saisirType(unsigned* ptr) {
+   bool success;
+   do {
+      success = scanf("%d", ptr);
+      viderBuffer();
+   } while ((!success || *ptr >= NB_TYPES) && printf(MSG_ERREUR_SAISIE));
 }
 
 //Fonction permettant de saisir un float
 
 void saisirFloat(float* ptr) {
    bool success;
+   printf(inviteSaisie);
    do {
       success = scanf("%f", ptr);
       viderBuffer();
-   } while (!success);
+   } while (!success && printf(MSG_ERREUR_SAISIE));
 }
 //Fonction permettant de saisir une string (sous forme char*)
 
@@ -43,7 +52,7 @@ void saisirString(char** ptr, unsigned size) {
    do {
       success = scanf("%s", *ptr);
       viderBuffer();
-   } while (!success);
+   } while ((!success || strlen(*ptr) != size) && printf(MSG_ERREUR_SAISIE));
 }
 //Permet la saisie de tous les détails d’un bateau qui sera retourné par la fonction.
 //Les erreurs de saisie sont gérées.
@@ -51,26 +60,26 @@ void saisirString(char** ptr, unsigned size) {
 Bateaux* saisirBateau() {
    Bateaux* b = malloc(sizeof (Bateaux));
 
-   //TODO vérifier les entrées et vider buffer
-   printf("Veuillez entrer un numero de plaque : \n");
+   printf("Veuillez entrer un numero de plaque de %d caracteres : \n", 
+           TAILLE_PLAQUE_MAX);
    saisirString(&(b->details.noPlaque), TAILLE_PLAQUE_MAX);
    printf("Veuillez entrer une longueur : \n");
    saisirFloat(&(b->details.longueur));
    printf("Bateau a moteur, rame ou voile? [0; 1; 2] : \n");
-   saisirUnsigned(&(b->type));
+   saisirType(&(b->type));
 
    switch (b->type) {
-      case 0:
+      case 0: //Moteur
          printf("Veuillez entrer un nombre de moteurs : \n");
          saisirUnsigned(&(b->specType.moteur.nbMoteurs));
          printf("Veuillez entrer une puissance totale : \n");
          saisirFloat(&(b->specType.moteur.puissanceTotale));
          break;
-      case 1:
+      case 1: //Rames
          printf("Veuillez entrer un nombre de rames : \n");
          saisirUnsigned(&(b->specType.rame.nbRames));
          break;
-      case 2:
+      case 2: //Voiles
          printf("Veuillez entrer une surface de voile : \n");
          saisirFloat(&(b->specType.voile.surfaceVoiles));
          break;
@@ -88,6 +97,7 @@ bool placerBateau(Bateaux* b) {
          return true;
       }
    }
+   
    return false;
 }
 //Libère le bateau identifié par no de plaque reçu en paramètre.
@@ -108,7 +118,7 @@ void afficherDetails(const char* noPlaqueR) {
    Bateaux* b;
    bool found = false;
    for (size_t i = 0; i < CAPACITE; ++i) {
-      if (port[i] != NULL && *(port[i]->details.noPlaque) == *noPlaqueR) {
+      if (port[i] != NULL && !strcmp(port[i]->details.noPlaque, noPlaqueR)) {
          b = port[i];
          found = true;
          break;
@@ -119,14 +129,14 @@ void afficherDetails(const char* noPlaqueR) {
       printf("no Plaque      : %s\n", b->details.noPlaque);
       printf("longueur       : %f\n", b->details.longueur);
       switch (b->type) {
-         case 0:
+         case 0: //Moteur
             printf("Nombre de moteurs : %d\n", b->specType.moteur.nbMoteurs);
             printf("Puissance totale  : %f\n", b->specType.moteur.puissanceTotale);
             break;
-         case 1:
+         case 1: //Rames
             printf("Nombre de rames   : %d\n", b->specType.rame.nbRames);
             break;
-         case 2:
+         case 2: //Voiles
             printf("Surface voiles  : %f\n", b->specType.voile.surfaceVoiles);
       }
    } else {
@@ -138,7 +148,11 @@ void afficherDetails(const char* noPlaqueR) {
 //longueur. Si la place est libre, affiche « - ».
 
 void afficherPlace(unsigned place) {
-   if (place >= CAPACITE) return;
+   if (place >= CAPACITE){
+      printf("Numero de place invalide\n");
+      return;
+   }
+   printf("Place no %d :\n", place);
    if (port[place] == NULL) {
       printf("-\n");
    } else {
@@ -159,5 +173,6 @@ void Parcourt(void (*f)()) {
 //Lister toutes les places du port.
 
 void afficherPort() {
+   printf("Affichage du port complet : \n");
    Parcourt(afficherPlace);
 }
